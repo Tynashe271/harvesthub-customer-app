@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'api_service.dart';
@@ -808,6 +810,7 @@ class _MobileHomeState extends State<MobileHome> {
   DeliverySettings delivery = DeliverySettings.fallback;
   bool loading = true;
   String error = '';
+  Timer? inventoryRefreshTimer;
 
   void toggleNavigation() {
     FocusManager.instance.primaryFocus?.unfocus();
@@ -826,13 +829,25 @@ class _MobileHomeState extends State<MobileHome> {
   void initState() {
     super.initState();
     refresh();
+    inventoryRefreshTimer = Timer.periodic(
+      const Duration(seconds: 15),
+      (_) => refresh(showLoading: false),
+    );
   }
 
-  Future<void> refresh() async {
-    setState(() {
-      loading = true;
-      error = '';
-    });
+  @override
+  void dispose() {
+    inventoryRefreshTimer?.cancel();
+    super.dispose();
+  }
+
+  Future<void> refresh({bool showLoading = true}) async {
+    if (showLoading) {
+      setState(() {
+        loading = true;
+        error = '';
+      });
+    }
     try {
       final values = await Future.wait([
         widget.api.products(),
@@ -965,7 +980,7 @@ class _MobileHomeState extends State<MobileHome> {
             cart.clear();
             index = 2;
           });
-          refresh();
+          refresh(showLoading: false);
         },
       ),
       OrdersPage(api: widget.api, orders: orders),
