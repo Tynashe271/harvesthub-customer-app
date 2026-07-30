@@ -63,6 +63,8 @@ class ApiService {
     if (token != null) 'Authorization': 'Token $token',
   };
 
+  Map<String, String> get publicHeaders => {'Content-Type': 'application/json'};
+
   dynamic decode(http.Response response) {
     dynamic body;
     try {
@@ -85,7 +87,7 @@ class ApiService {
     final response = await http
         .post(
           Uri.parse('$baseUrl/accounts/users/login/'),
-          headers: headers,
+          headers: publicHeaders,
           body: jsonEncode({'username': username, 'password': password}),
         )
         .timeout(const Duration(seconds: 70));
@@ -107,7 +109,7 @@ class ApiService {
     final response = await http
         .post(
           Uri.parse('$baseUrl/accounts/users/register/'),
-          headers: headers,
+          headers: publicHeaders,
           body: jsonEncode({
             'username': username,
             'email': email.trim().toLowerCase(),
