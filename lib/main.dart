@@ -985,7 +985,13 @@ class _MobileHomeState extends State<MobileHome> {
       ),
       OrdersPage(api: widget.api, orders: orders),
       ProfilePage(user: widget.user, logout: widget.logout),
-      AssistantPage(api: widget.api, openCart: () => setState(() => index = 1)),
+      AssistantPage(
+        api: widget.api,
+        openCart: () async {
+          await refresh(showLoading: false);
+          if (mounted) setState(() => index = 1);
+        },
+      ),
       FavoritesPage(
         products: products
             .where((product) => wishlist.containsKey(product.id))
@@ -1896,7 +1902,7 @@ class _TrackingProgress extends StatelessWidget {
 class AssistantPage extends StatefulWidget {
   const AssistantPage({super.key, required this.api, required this.openCart});
   final ApiService api;
-  final VoidCallback openCart;
+  final Future<void> Function() openCart;
 
   @override
   State<AssistantPage> createState() => _AssistantPageState();
@@ -1930,9 +1936,14 @@ class _AssistantPageState extends State<AssistantPage> {
       error = '';
     });
     try {
-      final answer = await widget.api.askAssistant(message, messages);
+      final result = await widget.api.askAssistant(message, messages);
+      final answer = (result['answer'] as String?) ?? '';
       if (mounted) {
         setState(() => messages.add({'role': 'assistant', 'content': answer}));
+      }
+      if (result['redirect_to_cart'] == true) {
+        await Future.delayed(const Duration(milliseconds: 900));
+        if (mounted) await widget.openCart();
       }
     } catch (e) {
       if (mounted) setState(() => error = e.toString());
@@ -1960,7 +1971,7 @@ class _AssistantPageState extends State<AssistantPage> {
             ),
             IconButton(
               tooltip: 'Open cart',
-              onPressed: widget.openCart,
+              onPressed: () => widget.openCart(),
               icon: const Icon(Icons.shopping_cart_outlined),
             ),
           ],

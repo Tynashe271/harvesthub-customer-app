@@ -190,7 +190,7 @@ class ApiService {
     );
   }
 
-  Future<String> askAssistant(
+  Future<Map<String, dynamic>> askAssistant(
     String message,
     List<Map<String, String>> history,
   ) async {
@@ -201,7 +201,7 @@ class ApiService {
           body: jsonEncode({'message': message, 'history': history}),
         )
         .timeout(const Duration(seconds: 45));
-    return Map<String, dynamic>.from(decode(response))['answer'] as String;
+    return Map<String, dynamic>.from(decode(response));
   }
 
   Future<void> initiateEcoCash(int orderId, String phone) async {
