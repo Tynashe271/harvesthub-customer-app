@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "zw.co.maphric" "\0"
-            VALUE "FileDescription", "Maphric Express" "\0"
+            VALUE "CompanyName", "zw.co.harvesthub" "\0"
+            VALUE "FileDescription", "HarvestHub Customer" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "Maphric Express" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 zw.co.maphric. All rights reserved." "\0"
-            VALUE "OriginalFilename", "maphric_express.exe" "\0"
-            VALUE "ProductName", "Maphric Express" "\0"
+            VALUE "InternalName", "HarvestHub Customer" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 zw.co.harvesthub. All rights reserved." "\0"
+            VALUE "OriginalFilename", "harvesthub_customer_app.exe" "\0"
+            VALUE "ProductName", "HarvestHub Customer" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

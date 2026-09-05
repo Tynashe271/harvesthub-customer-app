@@ -1,6 +1,6 @@
 {
-    "name": "Maphric Express",
-    "short_name": "Maphric",
+    "name": "HarvestHub Customer",
+    "short_name": "HarvestHub Customer",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#083F2C",

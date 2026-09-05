@@ -11,15 +11,15 @@ const gold = Color(0xFFF6C53D);
 const cream = Color(0xFFF7F5EC);
 const orange = Color(0xFFF39A1F);
 
-void main() => runApp(const MaphricApp());
+void main() => runApp(const HarvestHubApp());
 
-class MaphricApp extends StatefulWidget {
-  const MaphricApp({super.key});
+class HarvestHubApp extends StatefulWidget {
+  const HarvestHubApp({super.key});
   @override
-  State<MaphricApp> createState() => _MaphricAppState();
+  State<HarvestHubApp> createState() => _HarvestHubAppState();
 }
 
-class _MaphricAppState extends State<MaphricApp> {
+class _HarvestHubAppState extends State<HarvestHubApp> {
   final api = ApiService();
   bool loading = true;
   bool signedIn = false;
@@ -42,7 +42,7 @@ class _MaphricAppState extends State<MaphricApp> {
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Maphric Express',
+    title: 'HarvestHub Customer',
     theme: ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
@@ -120,7 +120,7 @@ class BrandLogo extends StatelessWidget {
     super.key,
     this.height = 100,
     this.width,
-    this.asset = 'assets/images/maphric_logo.png',
+    this.asset = 'assets/images/harvesthub_logo.png',
     this.padding = 8,
   });
   final double height;
@@ -306,7 +306,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             const SizedBox(height: 8),
                             const BrandLogo(
                               height: 112,
-                              asset: 'assets/images/maphric_dashboard_logo.png',
+                              asset: 'assets/images/harvesthub_dashboard_logo.png',
                               padding: 0,
                             ),
                             const SizedBox(height: 24),
@@ -325,8 +325,8 @@ class _AuthScreenState extends State<AuthScreen> {
                               duration: const Duration(milliseconds: 250),
                               child: Text(
                                 signup
-                                    ? 'Create your Maphric account.'
-                                    : 'Welcome back to Maphric Express.',
+                                    ? 'Create your HarvestHub account.'
+                                    : 'Welcome back to HarvestHub.',
                                 key: ValueKey(signup),
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(color: Colors.black54),
@@ -1022,7 +1022,7 @@ class _MobileHomeState extends State<MobileHome> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Image.asset(
-                      'assets/images/maphric_dashboard_logo.png',
+                      'assets/images/harvesthub_dashboard_logo.png',
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -2103,7 +2103,7 @@ class ShoppingListPage extends StatefulWidget {
 }
 
 class _ShoppingListPageState extends State<ShoppingListPage> {
-  static const storageKey = 'maphric_shopping_list';
+  static const storageKey = 'harvesthub_shopping_list';
   final controller = TextEditingController();
   final items = <String>[];
 
@@ -2295,7 +2295,7 @@ class ProfilePage extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           fullName.isEmpty
-              ? (user['username'] ?? 'Maphric customer')
+              ? (user['username'] ?? 'HarvestHub customer')
               : fullName,
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
@@ -2306,7 +2306,7 @@ class ProfilePage extends StatelessWidget {
           child: ListTile(
             leading: Icon(Icons.shield_outlined),
             title: Text('Secure account'),
-            subtitle: Text('Connected to your Maphric customer profile'),
+            subtitle: Text('Connected to your HarvestHub customer profile'),
           ),
         ),
         const Card(

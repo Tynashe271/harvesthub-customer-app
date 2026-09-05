@@ -1,4 +1,4 @@
-# mobile_app
+# HarvestHub Customer App
 
 A new Flutter project.
 

@@ -9,6 +9,16 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - build/**
+    - dist/**
+    - legacy_generated_cache/**
+    - .admin_deploy/**
+    - .apk_admin_site/**
+    - .apk_customer_site/**
+    - .web_deploy/**
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`

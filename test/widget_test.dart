@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:mobile_app/main.dart';
-import 'package:mobile_app/models.dart';
+import 'package:harvesthub_customer_app/main.dart';
+import 'package:harvesthub_customer_app/models.dart';
 
 void main() {
-  testWidgets('shows Maphric authentication experience', (tester) async {
+  testWidgets('shows HarvestHub authentication experience', (tester) async {
     SharedPreferences.setMockInitialValues({});
-    await tester.pumpWidget(const MaphricApp());
+    await tester.pumpWidget(const HarvestHubApp());
     await tester.pump();
     await tester.pump(const Duration(seconds: 1));
 

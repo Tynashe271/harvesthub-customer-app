@@ -43,3 +43,18 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Release keystore properties
+android/key.properties
+.admin_deploy/android/key.properties
+
+# Generated deployment and local tooling artifacts
+.admin_deploy/
+.apk_admin_site/
+.apk_customer_site/
+.firebase/
+.web_deploy/
+android/build/
+*.tar.gz
+temp_auth_test.py
+dist/

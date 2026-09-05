@@ -1,4 +1,4 @@
-package zw.co.maphric.mobile_app
+package zw.co.harvesthub.customer_app
 
 import io.flutter.embedding.android.FlutterActivity
 

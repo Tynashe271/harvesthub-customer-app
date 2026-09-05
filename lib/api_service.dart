@@ -12,7 +12,7 @@ class ApiException implements Exception {
 
 class ApiService {
   static const baseUrl = String.fromEnvironment(
-    'MAPHRIC_API_URL',
+    'HARVESTHUB_API_URL',
     defaultValue: 'https://maphric-express-api.onrender.com/api/v1',
   );
   String? token;
@@ -20,14 +20,14 @@ class ApiService {
 
   Future<bool> restoreSession() async {
     final preferences = await SharedPreferences.getInstance();
-    token = preferences.getString('maphric_token');
-    final savedUser = preferences.getString('maphric_user');
+    token = preferences.getString('harvesthub_token');
+    final savedUser = preferences.getString('harvesthub_user');
     if (savedUser != null) {
       try {
         currentUser = Map<String, dynamic>.from(jsonDecode(savedUser));
       } on FormatException {
-        await preferences.remove('maphric_token');
-        await preferences.remove('maphric_user');
+        await preferences.remove('harvesthub_token');
+        await preferences.remove('harvesthub_user');
         token = null;
         currentUser = {};
       }
@@ -43,8 +43,8 @@ class ApiService {
     currentUser = authenticatedUser;
     final preferences = await SharedPreferences.getInstance();
     await Future.wait([
-      preferences.setString('maphric_token', value),
-      preferences.setString('maphric_user', jsonEncode(authenticatedUser)),
+      preferences.setString('harvesthub_token', value),
+      preferences.setString('harvesthub_user', jsonEncode(authenticatedUser)),
     ]);
   }
 
@@ -53,8 +53,8 @@ class ApiService {
     currentUser = {};
     final preferences = await SharedPreferences.getInstance();
     await Future.wait([
-      preferences.remove('maphric_token'),
-      preferences.remove('maphric_user'),
+      preferences.remove('harvesthub_token'),
+      preferences.remove('harvesthub_user'),
     ]);
   }
 
